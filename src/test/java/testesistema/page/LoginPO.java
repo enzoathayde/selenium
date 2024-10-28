@@ -1,6 +1,6 @@
 package testesistema.page;
 
-import org.openqa.selenium.Keys;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,11 +27,6 @@ public class LoginPO extends BasePO {
 
   public String obterMensagem() {
     return this.spanMensagem.getText();
-  }
-
-  public void escrever(WebElement input, String texto) {
-    input.clear();
-    input.sendKeys(texto + Keys.TAB);
   }
 
   public void logar(String email, String senha) {
