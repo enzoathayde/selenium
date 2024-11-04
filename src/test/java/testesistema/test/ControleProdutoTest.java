@@ -59,7 +59,7 @@ public class ControleProdutoTest extends BaseTest {
     // cria objeto com todos os atributos pré-confugrados
     ProdutoBuilder produtoBuilder = new ProdutoBuilder(productPage);
     // invoca o método do objeto que coloca os métodos pŕe-configurados dentro de cada campo, NESSE CASO ESTOU RETIRANDO A DATA
-    produtoBuilder.setData("");;
+    produtoBuilder.setData("");
     produtoBuilder.buildProduct();
     String aviso = productPage.obterMensagem();
     assertEquals("Todos os campos são obrigatórios para o cadastro!", aviso);
@@ -93,6 +93,51 @@ public class ControleProdutoTest extends BaseTest {
 
   }
 
+  //CASO 3: NÃO CADASTRAR PRODUTO COM DATA INVÁLIDA(DIA)
+  @Test
+  public void dataInvalidaDia() {
+    productPage.botaoCriar.click();
+    productPage.botaoCriar.click();
+    ProdutoBuilder produtoBuilder = new ProdutoBuilder(productPage);
+    // invoca o método do objeto que coloca os métodos pŕe-configurados dentro de cada campo, NESSE CASO ESTOU RETIRANDO A DATA
+    produtoBuilder.setData("45/09/2003");
+    produtoBuilder.buildProduct();
+    String aviso = productPage.obterMensagem();
+    assertEquals("Data preenchida é inválida para o cadastro.", aviso);
+  }
+
+  //CASO 4: NÃO CADASTRAR PRODUTO COM DATA INVÁLIDA(MÊS)
+  @Test
+  public void dataInvalidaMes() {
+    productPage.botaoCriar.click();
+    productPage.botaoCriar.click();
+    ProdutoBuilder produtoBuilder = new ProdutoBuilder(productPage);
+    // invoca o método do objeto que coloca os métodos pŕe-configurados dentro de cada campo, NESSE CASO ESTOU RETIRANDO A DATA
+    produtoBuilder.setData("01/15/2003");
+    produtoBuilder.buildProduct();
+    String aviso = productPage.obterMensagem();
+    assertEquals("Data preenchida é inválida para o cadastro.", aviso);
+  }
+
+
+  // CASO 5:  NÃO CADASTRAR PRODUTO COM DATA INVÁLIDA(ANO) 
+  @Test
+  public void dataInvalidaAno() {
+    productPage.botaoCriar.click();
+    productPage.botaoCriar.click();
+    ProdutoBuilder produtoBuilder = new ProdutoBuilder(productPage);
+    // invoca o método do objeto que coloca os métodos pŕe-configurados dentro de cada campo, NESSE CASO ESTOU RETIRANDO A DATA
+    produtoBuilder.setData("01/15/20099");
+    produtoBuilder.buildProduct();
+    String aviso = productPage.obterMensagem();
+    assertEquals("Data preenchida é inválida para o cadastro.", aviso);
+  }
+
 }
+
+
+
+
+
 
 
